@@ -4,41 +4,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>BlazorBasic</title>
-    <base href="/" />
-    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/app.css" rel="stylesheet" />
-    <link href="BlazorBasic.styles.css" rel="stylesheet" />
-
-    <head>
-        <style>
-            #data-table td {
-                padding: 0 20px;
-                border-collapse: separate;
-                border-spacing: 0 20px;
-            }
-            body {
-            font-family: Arial, sans-serif;
-        }
-
-            h1 {
-                font-family: Fantasy;
-                font-size: 2em;
-                /* Adjust this value to increase or decrease the size */
-            }
-        </style>
-
-    </head>
-
+    <title>PL2 NAZAR MARCO</title>
+</html>
 <body>
-    
-    <h1>SPACE INVADERS PLAYERS SCORE</h1>
-    <blockquote>
-        Open the console in the browser developer tools to see the API responses.
-    </blockquote>
-    <div>
-        <button id="Mostrar Clasificacion" onclick="list()">List</button>
-    </div>
     <table id="miTabla">
         <thead>
             <tr>
@@ -48,17 +16,11 @@
                 <th>Nombre</th>
             </tr>
         </thead>
-        <tbody>
-            <!-- The data will be inserted here -->
-        </tbody>
+        <tbody></tbody>
     </table>
-    <label for="id-input">Enter an integer:</label>
-    <input type="text" id="id-input">
-    <button id="submit-button">Submit</button>
-    <p id="error-message" style="color: red;"></p>
-    <script>
-        async function list() {
-            fetch("http://express70558099.azurewebsites.net/", method =  "GET")
+
+<script>
+    fetch("http://express70558099.azurewebsites.net/", method =  "GET")
             .then(response => response.json())
             .then(daata => {
                 // Crear la tabla y agregar los datos
@@ -75,8 +37,6 @@
                 });
             })
             .catch(error => console.error('Error al obtener los datos:', error));
-        }
-    </script>
+</script>
 </body>
-
 </html>
