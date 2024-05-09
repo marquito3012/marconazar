@@ -5,7 +5,7 @@
     "options": {
       "set-session-context": false 
     },
-    "connection-string": "Server=tcp:diff2dbserver.database.windows.net,1433;Initial Catalog=diff2db;Persist Security Info=False;User ID=papapa;Password=Zafiro12.;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+    "connection-string": "Server=pl2nazarmarco.postgres.database.azure.com;Database=postgres;Port=5432;User Id=PL2NazarMarco;Password={your_password};Ssl Mode=Require;"
   },
   "runtime": {
     "rest": {
@@ -30,7 +30,7 @@
   },
   "entities": {
     "score": {
-      "source": "dbo.score",
+      "source": "cloudpap",
       "permissions": [
         {
           "actions": ["*"],
