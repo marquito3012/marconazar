@@ -24,8 +24,13 @@
     </table>
 <script>
     fetch("http://express70558099.azurewebsites.net/")
-            .then(response => response.json())
-            .then(daata => {
+            .then(response => {
+                if (!response.ok){
+                    throw new Error('Hubo un problema con la solicitud: ' + response.statusText);
+                }
+                return response.json()
+            })
+            .then(data => {
                 // Crear la tabla y agregar los datos
                 const tabla = document.getElementById('miTabla').getElementsByTagName('tbody')[0];
                 data.forEach(fila => {
