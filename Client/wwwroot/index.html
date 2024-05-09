@@ -38,9 +38,6 @@
     </blockquote>
     <div>
         <button id="list" onclick="list()">List</button>
-        <button id="get" onclick="get()">Get</button>
-        <button id="update" onclick="update()">Update</button>
-        <button id="delete" onclick="del()">Delete</button>
     </div>
     <table id="data-table">
         <thead>
@@ -93,8 +90,8 @@
             console.table(result.value);
         }
         async function list() {
-            const endpoint = '/data-api/rest/score';
-            const response = await fetch(endpoint);
+            const endpoint = '/';
+            const response = await fetch(endpoint, method = "GET");
             const data = await response.json();
 
             console.table(data.value);
