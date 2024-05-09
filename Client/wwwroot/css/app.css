@@ -1,6 +1,7 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
 html, body {
+    color: #fff;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
@@ -62,3 +63,17 @@ a, .btn-link {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+
+#data-table th {
+    #data-table th:nth-child(-n+2) {
+        padding: 0 10px;
+    }
+
+    #data-table th:nth-child(n+3) {
+        padding: 0 30px;
+    }
+}
+
+body {
+    margin: 20px;
+}

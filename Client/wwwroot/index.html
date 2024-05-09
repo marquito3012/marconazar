@@ -9,17 +9,216 @@
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <link href="css/app.css" rel="stylesheet" />
     <link href="BlazorBasic.styles.css" rel="stylesheet" />
-</head>
+
+    <head>
+        <style>
+            #data-table td {
+                padding: 0 20px;
+                border-collapse: separate;
+                border-spacing: 0 20px;
+            }
+            body {
+            font-family: Arial, sans-serif;
+        }
+
+            h1 {
+                font-family: Fantasy;
+                font-size: 2em;
+                /* Adjust this value to increase or decrease the size */
+            }
+        </style>
+
+    </head>
 
 <body>
-    <div id="app">Loading...</div>
-
-    <div id="blazor-error-ui">
-        An unhandled error has occurred.
-        <a href="" class="reload">Reload</a>
-        <a class="dismiss">🗙</a>
+    
+    <h1>SPACE INVADERS PLAYERS SCORE</h1>
+    <blockquote>
+        Open the console in the browser developer tools to see the API responses.
+    </blockquote>
+    <div>
+        <button id="list" onclick="list()">List</button>
+        <button id="get" onclick="get()">Get</button>
+        <button id="update" onclick="update()">Update</button>
+        <button id="delete" onclick="del()">Delete</button>
     </div>
-    <script src="_framework/blazor.webassembly.js"></script>
+    <table id="data-table">
+        <thead>
+            <tr>
+                <th colspan="2">Id</th>
+                <th colspan="2">Score</th>
+                <th colspan="2">Date</th>
+                <th colspan="2">Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- The data will be inserted here -->
+        </tbody>
+    </table>
+    <label for="id-input">Enter an integer:</label>
+    <input type="text" id="id-input">
+    <button id="submit-button">Submit</button>
+    <p id="error-message" style="color: red;"></p>
+    <script>
+        function getInput() {
+            var inputValue = document.getElementById('getInput').value;
+        } 
+        var submitButton = document.getElementById('id-input');
+        submitButton.addEventListener('click', getInput,false); {
+
+    };
+
+        async function get() {
+            function getInput() {
+            var id = document.getElementById('getInput').value;
+        } 
+        var submitButton = document.getElementById('id-input');
+        submitButton.addEventListener('click', getInput,false); {
+
+    };
+
+        // Check if the input value is an integer
+        if (Number.isInteger(Number(id))) {
+
+
+            // Clear the error message
+            document.getElementById('error-message').textContent = '';
+        } else {
+            // Display an error message
+            document.getElementById('error-message').textContent = 'Please enter an integer.';
+        }
+            const endpoint = `/data-api/rest/score/id`;
+            const response = await fetch(`${endpoint}/${id}`);
+            const result = await response.json();
+            console.table(result.value);
+        }
+        async function list() {
+            const endpoint = '/data-api/rest/score';
+            const response = await fetch(endpoint);
+            const data = await response.json();
+
+            console.table(data.value);
+
+            // Get a reference to the table
+            let table = document.getElementById('data-table');
+
+            // Get a reference to the table body
+            let tbody = table.getElementsByTagName('tbody')[0];
+
+            // Clear the table body
+            while (tbody.firstChild) {
+                tbody.removeChild(tbody.firstChild);
+            }
+
+            // Loop through the data and add each item as a new row in the table
+            for (let item of data.value) {
+                // Create a new row
+                let row = document.createElement('tr');
+
+                // Add a cell for each property of the item
+                for (let property in item) {
+                    let cell = document.createElement('td');
+                    // Check if the property is 'date'
+                    if (property === 'date') {
+                        // Only display the first 21 characters of the date string
+                        cell.textContent = item[property].substring(0, 21);
+                    } else {
+                        cell.textContent = item[property];
+                    }
+                    cell.textContent = item[property];
+                    row.appendChild(cell);
+                }
+
+                // Add the row to the table body
+                tbody.appendChild(row);
+            }
+        }
+        async function update() {
+            function getInput() {
+            var id = document.getElementById('getInput').value;
+        } 
+        var submitButton = document.getElementById('id-input');
+        submit-button.addEventListener('click', getInput,false); {
+
+    };
+
+        // Check if the input value is an integer
+        if (Number.isInteger(Number(id))) {
+
+
+            // Clear the error message
+            document.getElementById('error-message').textContent = '';
+        } else {
+            // Display an error message
+            document.getElementById('error-message').textContent = 'Please enter an integer.';
+        }
+
+            const data = {
+                id:id,
+                name: "Nuevo update",
+                score:999,
+                date: new Date().toISOString()
+            };
+
+            const endpoint = '/data-api/rest/score/id';
+            const response = await fetch(`${endpoint}/${id}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            });
+            const result = await response.j
+            son();
+            console.table(result.value);
+        }
+        async function create() {
+
+            const data = {
+                if:id,
+                name: "Creado",
+                score:999,
+                date: "2021-09-01T00:00:00"
+            };
+
+            const endpoint = `/data-api/rest/score/`;
+            const response = await fetch(endpoint, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            });
+            const result = await response.json();
+            console.table(result.value);
+        }
+        async function del() {
+            function getInput() {
+            var id = document.getElementById('getInput').value;
+        } 
+        var submitButton = document.getElementById('id-input');
+        submit-button.addEventListener('click', getInput,false); {
+
+    };
+
+        // Check if the input value is an integer
+        if (Number.isInteger(Number(id))) {
+
+
+            // Clear the error message
+            document.getElementById('error-message').textContent = '';
+        } else {
+            // Display an error message
+            document.getElementById('error-message').textContent = 'Please enter an integer.';
+        }
+  
+            const endpoint = '/data-api/rest/score/id';
+            const response = await fetch(`${endpoint}/${id}`, {
+                method: "DELETE"
+            });
+            if (response.ok) {
+                console.log(`Record deleted: ${id}`)
+            } else {
+                console.log(response);
+            }
+        }
+    </script>
 </body>
 
 </html>
