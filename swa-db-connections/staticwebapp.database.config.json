@@ -5,7 +5,7 @@
     "options": {
       "set-session-context": false 
     },
-    "connection-string": "@env('Server=pl2nazarmarco.postgres.database.azure.com;Database=postgres;Port=5432;User Id=PL2NazarMarco;Password=NazarMarcoPL\";Ssl Mode=Require;')"
+    "connection-string": "@env('Server=pl2nazarmarco.postgres.database.azure.com;Database=cloudpap;Port=5432;User Id=PL2NazarMarco;Password=NazarMarcoPL\";Ssl Mode=Require;')"
   },
   "runtime": {
     "rest": {
